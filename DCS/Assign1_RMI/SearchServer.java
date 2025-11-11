@@ -1,0 +1,18 @@
+import java.rmi.*;
+import java.rmi.registry.*;
+
+public class SearchServer {
+    
+    public static void main (String args[]) {
+        try {
+            System.out.println("Server Running...Waiting for client request.");
+        
+            Search obj = new SearchQuery();
+            LocateRegistry.createRegistry(1900);
+            Naming.rebind("rmi://localhost:1900" + "/andor", obj);
+        } catch (Exception ae) {
+            System.out.println(ae);
+        }
+    }
+
+}
